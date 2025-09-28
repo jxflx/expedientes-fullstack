@@ -1,0 +1,489 @@
+Index: dashboard/admin.py
+===================================================================
+diff --git a/dashboard/admin.py b/dashboard/admin.py
+deleted file mode 100644
+--- a/dashboard/admin.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,3 +0,0 @@
+-from django.contrib import admin
+-
+-# Register your models here.
+Index: dashboard/models.py
+===================================================================
+diff --git a/dashboard/models.py b/dashboard/models.py
+deleted file mode 100644
+--- a/dashboard/models.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,3 +0,0 @@
+-from django.db import models
+-
+-# Create your models here.
+Index: dashboard/views.py
+===================================================================
+diff --git a/dashboard/views.py b/dashboard/views.py
+deleted file mode 100644
+--- a/dashboard/views.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,6 +0,0 @@
+-from django.http import HttpResponse
+-from django.shortcuts import render
+-
+-# Create your views here.
+-def index(request):
+-    return render(request, 'dashboard/dashboard.html')
+\ No newline at end of file
+Index: dashboard/apps.py
+===================================================================
+diff --git a/dashboard/apps.py b/dashboard/apps.py
+deleted file mode 100644
+--- a/dashboard/apps.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,6 +0,0 @@
+-from django.apps import AppConfig
+-
+-
+-class DashboardConfig(AppConfig):
+-    default_auto_field = 'django.db.models.BigAutoField'
+-    name = 'dashboard'
+Index: dashboard/tests.py
+===================================================================
+diff --git a/dashboard/tests.py b/dashboard/tests.py
+deleted file mode 100644
+--- a/dashboard/tests.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,3 +0,0 @@
+-from django.test import TestCase
+-
+-# Create your tests here.
+Index: dashboard/urls.py
+===================================================================
+diff --git a/dashboard/urls.py b/dashboard/urls.py
+deleted file mode 100644
+--- a/dashboard/urls.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,6 +0,0 @@
+-from django.urls import path
+-from . import views
+-
+-urlpatterns = [
+-    path('', views.index),
+-]
+\ No newline at end of file
+Index: dashboard/templates/dashboard/dashboard.html
+===================================================================
+diff --git a/dashboard/templates/dashboard/dashboard.html b/dashboard/templates/dashboard/dashboard.html
+deleted file mode 100644
+--- a/dashboard/templates/dashboard/dashboard.html	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ /dev/null	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
+@@ -1,217 +0,0 @@
+-<!DOCTYPE html>
+-<html lang="es">
+-<head>
+-    <meta charset="UTF-8">
+-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+-    <title>Dashboard Médico | Gestión de Expedientes</title>
+-    <!-- Carga de Tailwind CSS CDN -->
+-    <script src="https://cdn.tailwindcss.com"></script>
+-    <!-- Configuración para usar la fuente Inter y personalizar un poco el color -->
+-    <script>
+-        tailwind.config = {
+-            theme: {
+-                extend: {
+-                    fontFamily: {
+-                        sans: ['Inter', 'sans-serif'],
+-                    },
+-                    colors: {
+-                        'primary-blue': '#1D4ED8', // Azul fuerte para acentos
+-                        'secondary-gray': '#F3F4F6', // Gris claro para fondos
+-                    }
+-                }
+-            }
+-        }
+-    </script>
+-    <style>
+-        /* Usamos la fuente Inter para un look moderno */
+-        body {
+-            font-family: 'Inter', sans-serif;
+-            background-color: #F3F4F6; /* Fondo gris claro */
+-        }
+-    </style>
+-</head>
+-<body class="min-h-screen flex">
+-
+-    <!-- 1. Barra de Navegación Lateral (Sidebar) - Fija en escritorio, oculta en móvil -->
+-    <aside id="sidebar" class="w-64 bg-white text-gray-800 shadow-xl hidden md:block flex-shrink-0 rounded-r-lg m-2">
+-        <div class="p-6">
+-            <h1 class="text-2xl font-bold text-primary-blue border-b pb-4 mb-6">
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 inline mr-2 align-text-bottom" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+-                  <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+-                </svg>
+-                Dr. Dashboard
+-            </h1>
+-        </div>
+-        <nav class="space-y-2 px-4 pb-4">
+-            <!-- Enlaces de navegación con estilos de mockup -->
+-            <a href="#" class="flex items-center p-3 text-sm font-semibold rounded-lg hover:bg-secondary-gray hover:text-primary-blue transition duration-150 bg-secondary-gray text-primary-blue">
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+-                    <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z" />
+-                </svg>
+-                Inicio (Vista General)
+-            </a>
+-
+-            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-lg hover:bg-secondary-gray hover:text-primary-blue transition duration-150 text-gray-600">
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+-                    <path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd" />
+-                </svg>
+-                Formulario Nuevo Paciente
+-            </a>
+-
+-            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-lg hover:bg-secondary-gray hover:text-primary-blue transition duration-150 text-gray-600">
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+-                    <path d="M9 2a1 1 0 000 2h2a1 1 0 100-2H9z" />
+-                    <path fill-rule="evenodd" d="M4 5a2 2 0 012-2 3 3 0 003 3h2a3 3 0 003-3 2 2 0 012 2v11a2 2 0 01-2 2H6a2 2 0 01-2-2V5zm3 4a1 1 0 000 2h.01a1 1 0 100-2H7zm3 0a1 1 0 000 2h.01a1 1 0 100-2H10zm3 0a1 1 0 000 2h.01a1 1 0 100-2H13zm-3 4a1 1 0 100 2h.01a1 1 0 100-2H10z" clip-rule="evenodd" />
+-                </svg>
+-                Lista de Pacientes
+-            </a>
+-
+-            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-lg hover:bg-secondary-gray hover:text-primary-blue transition duration-150 text-gray-600">
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+-                    <path d="M3 12v3c0 1.657 3.134 3 7 3s7-1.343 7-3v-3c0-1.657-3.134-3-7-3s-7 1.343-7 3z" />
+-                    <path d="M3 7v3c0 1.657 3.134 3 7 3s7-1.343 7-3V7c0-1.657-3.134-3-7-3s-7 1.343-7 3z" clip-rule="evenodd" />
+-                    <path d="M10 20a1 1 0 100-2 1 1 0 000 2z" />
+-                </svg>
+-                Reportes Mensuales
+-            </a>
+-
+-            <a href="#" class="flex items-center p-3 text-sm font-medium rounded-lg hover:bg-secondary-gray hover:text-primary-blue transition duration-150 text-gray-600">
+-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-3" viewBox="0 0 20 20" fill="currentColor">
+-                    <path fill-rule="evenodd" d="M11.49 3.17c-.38-.21-.8-.3-.82-.33-.2-.04-.45-.02-.67.09-.23.1-.38.29-.42.48-.05.18-.04.4.06.63.1.2.3.37.52.46.22.09.47.1.69.04.22-.05.4-.2.53-.34.13-.15.22-.32.25-.5.03-.18.02-.4-.08-.62a.65.65 0 00-.51-.31zm.9 2.01c-.1-.02-.2-.04-.3-.04-.2 0-.4.04-.6.12-.2.08-.4.2-.5.35-.1.15-.2.3-.2.5 0 .2-.02.4.06.6.08.2.2.37.4.47.2.1.4.1.6.08.2-.02.4-.1.5-.25.1-.15.2-.3.2-.5 0-.2.02-.4-.06-.6-.08-.2-.2-.37-.4-.47zM4 12a1 1 0 000 2h12a1 1 0 100-2H4zm0 4a1 1 0 100 2h12a1 1 0 100-2H4z" clip-rule="evenodd" />
+-                </svg>
+-                Configuración
+-            </a>
+-        </nav>
+-
+-        <div class="absolute bottom-0 w-full p-4 border-t">
+-            <p class="text-xs text-gray-400 text-center">v1.0.0 - Expedientes Digitales</p>
+-        </div>
+-    </aside>
+-
+-    <!-- 2. Contenido Principal -->
+-    <main class="flex-grow p-4 md:p-8">
+-        <!-- Barra superior para móvil/escritorio -->
+-        <header class="flex justify-between items-center mb-6 md:mb-8 bg-white p-4 rounded-lg shadow-md md:shadow-none">
+-            <h2 class="text-2xl md:text-3xl font-bold text-gray-800">
+-                Panel de Control Principal
+-            </h2>
+-            <div class="flex items-center space-x-4">
+-                <span class="text-sm font-medium text-gray-600 hidden sm:block">
+-                    Bienvenido, Dr. Culo grande :)
+-                </span>
+-                <button id="mobile-menu-button" class="md:hidden p-2 rounded-lg bg-primary-blue text-white hover:bg-blue-700 transition">
+-                    <!-- Icono de menú (Hamburguesa) -->
+-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+-                        <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+-                    </svg>
+-                </button>
+-            </div>
+-        </header>
+-
+-        <!-- Contenedores de tarjetas de información (Mockup) -->
+-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+-            <!-- Tarjeta 1: Total Pacientes -->
+-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-primary-blue">
+-                <p class="text-sm font-medium text-gray-500">Total Pacientes</p>
+-                <p class="text-3xl font-extrabold text-gray-800 mt-1">1,452</p>
+-            </div>
+-            <!-- Tarjeta 2: Citas Hoy -->
+-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-green-500">
+-                <p class="text-sm font-medium text-gray-500">Citas Hoy</p>
+-                <p class="text-3xl font-extrabold text-gray-800 mt-1">12</p>
+-            </div>
+-            <!-- Tarjeta 3: Nuevos Expedientes Mes -->
+-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-yellow-500">
+-                <p class="text-sm font-medium text-gray-500">Nuevos Expedientes (Mes)</p>
+-                <p class="text-3xl font-extrabold text-gray-800 mt-1">45</p>
+-            </div>
+-            <!-- Tarjeta 4: Próximo Reporte -->
+-            <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+-                <p class="text-sm font-medium text-gray-500">Próximo Reporte</p>
+-                <p class="text-xl font-bold text-gray-800 mt-2">1er Lunes del Mes</p>
+-            </div>
+-        </div>
+-
+-        <!-- Sección Principal (Simulando la carga de contenido) -->
+-        <div id="content-area" class="bg-white p-6 md:p-10 rounded-xl shadow-lg">
+-            <h3 class="text-xl font-semibold text-gray-800 mb-4 border-b pb-2">
+-                Simulación: Sección de Lista de Pacientes (Próxima Cita)
+-            </h3>
+-
+-            <!-- Tabla simulada de pacientes -->
+-            <div class="overflow-x-auto">
+-                <table class="min-w-full divide-y divide-gray-200">
+-                    <thead class="bg-secondary-gray">
+-                        <tr>
+-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tl-lg">Nombre</th>
+-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Última Visita</th>
+-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Teléfono</th>
+-                            <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider rounded-tr-lg">Acciones</th>
+-                        </tr>
+-                    </thead>
+-                    <tbody class="bg-white divide-y divide-gray-200">
+-                        <!-- Fila 1 -->
+-                        <tr>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Ana Laura Pérez</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-09-15</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">55 1234 5678</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+-                                <a href="#" class="text-primary-blue hover:text-blue-700 font-medium transition">Ver Expediente</a>
+-                            </td>
+-                        </tr>
+-                        <!-- Fila 2 -->
+-                        <tr>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">Juan Carlos Ríos</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-09-20</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">55 9876 5432</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+-                                <a href="#" class="text-primary-blue hover:text-blue-700 font-medium transition">Ver Expediente</a>
+-                            </td>
+-                        </tr>
+-                        <!-- Fila 3 -->
+-                         <tr>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">María Fernanda Gómez</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">2024-08-01</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">55 5555 1111</td>
+-                            <td class="px-6 py-4 whitespace-nowrap text-sm">
+-                                <a href="#" class="text-primary-blue hover:text-blue-700 font-medium transition">Ver Expediente</a>
+-                            </td>
+-                        </tr>
+-                    </tbody>
+-                </table>
+-            </div>
+-
+-            <p class="mt-8 text-sm text-gray-500 p-4 border rounded-lg bg-secondary-gray">
+-                Este es un espacio de contenido estático que representaría la vista de la sección seleccionada (por ejemplo, la Lista de Pacientes o el Formulario de Nuevo Paciente).
+-            </p>
+-        </div>
+-    </main>
+-
+-    <!-- Script de JavaScript para la interactividad móvil -->
+-    <script>
+-        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+-            const sidebar = document.getElementById('sidebar');
+-            // Alternar la clase 'hidden' en móvil para mostrar/ocultar el menú
+-            sidebar.classList.toggle('hidden');
+-            // En móvil, cuando se abre, queremos que ocupe toda la pantalla y se superponga al contenido
+-            if (!sidebar.classList.contains('hidden')) {
+-                sidebar.classList.add('fixed', 'inset-y-0', 'left-0', 'z-50');
+-                // Esto es solo para el mockup. En una app real, usarías una superposición (overlay)
+-            } else {
+-                sidebar.classList.remove('fixed', 'inset-y-0', 'left-0', 'z-50');
+-            }
+-        });
+-
+-        // Asegurarse de que al hacer clic en un enlace en móvil, se oculte el menú
+-        document.querySelectorAll('#sidebar a').forEach(link => {
+-            link.addEventListener('click', function() {
+-                const sidebar = document.getElementById('sidebar');
+-                if (window.innerWidth < 768) { // md breakpoint in Tailwind is 768px
+-                    sidebar.classList.add('hidden');
+-                    sidebar.classList.remove('fixed', 'inset-y-0', 'left-0', 'z-50');
+-                }
+-            });
+-        });
+-    </script>
+-</body>
+-</html>
+Index: .gitignore
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+># Django #\r\n*.log\r\n*.pot\r\n*.pyc\r\n__pycache__\r\ndb.sqlite3\r\nmedia\r\n\r\n# Backup files # \r\n*.bak \r\n\r\n# If you are using PyCharm # \r\n# User-specific stuff\r\n.idea/**/workspace.xml\r\n.idea/**/tasks.xml\r\n.idea/**/usage.statistics.xml\r\n.idea/**/dictionaries\r\n.idea/**/shelf\r\n.idea/\r\n\r\n# AWS User-specific\r\n.idea/**/aws.xml\r\n\r\n# Generated files\r\n.idea/**/contentModel.xml\r\n\r\n# Sensitive or high-churn files\r\n.idea/**/dataSources/\r\n.idea/**/dataSources.ids\r\n.idea/**/dataSources.local.xml\r\n.idea/**/sqlDataSources.xml\r\n.idea/**/dynamic.xml\r\n.idea/**/uiDesigner.xml\r\n.idea/**/dbnavigator.xml\r\n\r\n# Gradle\r\n.idea/**/gradle.xml\r\n.idea/**/libraries\r\n\r\n# File-based project format\r\n*.iws\r\n\r\n# IntelliJ\r\nout/\r\n\r\n# JIRA plugin\r\natlassian-ide-plugin.xml\r\n\r\n# Python # \r\n*.py[cod] \r\n*$py.class \r\n\r\n# Distribution / packaging \r\n.Python build/ \r\ndevelop-eggs/ \r\ndist/ \r\ndownloads/ \r\neggs/ \r\n.eggs/ \r\nlib/ \r\nlib64/ \r\nparts/ \r\nsdist/ \r\nvar/ \r\nwheels/ \r\n*.whl\r\n*.egg-info/ \r\n.installed.cfg \r\n*.egg \r\n*.manifest \r\n*.spec \r\n\r\n# Installer logs \r\npip-log.txt \r\npip-delete-this-directory.txt \r\n\r\n# Unit test / coverage reports \r\nhtmlcov/ \r\n.tox/ \r\n.coverage \r\n.coverage.* \r\n.cache \r\n.pytest_cache/ \r\nnosetests.xml \r\ncoverage.xml \r\n*.cover \r\n.hypothesis/ \r\n\r\n# Jupyter Notebook \r\n.ipynb_checkpoints \r\n\r\n# pyenv \r\n.python-version \r\n\r\n# celery \r\ncelerybeat-schedule.* \r\n\r\n# SageMath parsed files \r\n*.sage.py \r\n\r\n# Environments \r\n.env \r\n.venv \r\nenv/ \r\nvenv/ \r\nENV/ \r\nenv.bak/ \r\nvenv.bak/ \r\n\r\n# mkdocs documentation \r\n/site \r\n\r\n# mypy \r\n.mypy_cache/ \r\n\r\n# Sublime Text # \r\n*.tmlanguage.cache \r\n*.tmPreferences.cache \r\n*.stTheme.cache \r\n*.sublime-workspace \r\n*.sublime-project \r\n\r\n# sftp configuration file \r\nsftp-config.json \r\n\r\n# Package control specific files Package \r\nControl.last-run \r\nControl.ca-list \r\nControl.ca-bundle \r\nControl.system-ca-bundle \r\nGitHub.sublime-settings \r\n\r\n# Visual Studio Code # \r\n.vscode/* \r\n!.vscode/settings.json \r\n!.vscode/tasks.json \r\n!.vscode/launch.json \r\n!.vscode/extensions.json \r\n.history
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.gitignore b/.gitignore
+--- a/.gitignore	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ b/.gitignore	(date 1758860310870)
+@@ -1,139 +1,0 @@
+-# Django #
+-*.log
+-*.pot
+-*.pyc
+-__pycache__
+-db.sqlite3
+-media
+-
+-# Backup files # 
+-*.bak 
+-
+-# If you are using PyCharm # 
+-# User-specific stuff
+-.idea/**/workspace.xml
+-.idea/**/tasks.xml
+-.idea/**/usage.statistics.xml
+-.idea/**/dictionaries
+-.idea/**/shelf
+-.idea/
+-
+-# AWS User-specific
+-.idea/**/aws.xml
+-
+-# Generated files
+-.idea/**/contentModel.xml
+-
+-# Sensitive or high-churn files
+-.idea/**/dataSources/
+-.idea/**/dataSources.ids
+-.idea/**/dataSources.local.xml
+-.idea/**/sqlDataSources.xml
+-.idea/**/dynamic.xml
+-.idea/**/uiDesigner.xml
+-.idea/**/dbnavigator.xml
+-
+-# Gradle
+-.idea/**/gradle.xml
+-.idea/**/libraries
+-
+-# File-based project format
+-*.iws
+-
+-# IntelliJ
+-out/
+-
+-# JIRA plugin
+-atlassian-ide-plugin.xml
+-
+-# Python # 
+-*.py[cod] 
+-*$py.class 
+-
+-# Distribution / packaging 
+-.Python build/ 
+-develop-eggs/ 
+-dist/ 
+-downloads/ 
+-eggs/ 
+-.eggs/ 
+-lib/ 
+-lib64/ 
+-parts/ 
+-sdist/ 
+-var/ 
+-wheels/ 
+-*.whl
+-*.egg-info/ 
+-.installed.cfg 
+-*.egg 
+-*.manifest 
+-*.spec 
+-
+-# Installer logs 
+-pip-log.txt 
+-pip-delete-this-directory.txt 
+-
+-# Unit test / coverage reports 
+-htmlcov/ 
+-.tox/ 
+-.coverage 
+-.coverage.* 
+-.cache 
+-.pytest_cache/ 
+-nosetests.xml 
+-coverage.xml 
+-*.cover 
+-.hypothesis/ 
+-
+-# Jupyter Notebook 
+-.ipynb_checkpoints 
+-
+-# pyenv 
+-.python-version 
+-
+-# celery 
+-celerybeat-schedule.* 
+-
+-# SageMath parsed files 
+-*.sage.py 
+-
+-# Environments 
+-.env 
+-.venv 
+-env/ 
+-venv/ 
+-ENV/ 
+-env.bak/ 
+-venv.bak/ 
+-
+-# mkdocs documentation 
+-/site 
+-
+-# mypy 
+-.mypy_cache/ 
+-
+-# Sublime Text # 
+-*.tmlanguage.cache 
+-*.tmPreferences.cache 
+-*.stTheme.cache 
+-*.sublime-workspace 
+-*.sublime-project 
+-
+-# sftp configuration file 
+-sftp-config.json 
+-
+-# Package control specific files Package 
+-Control.last-run 
+-Control.ca-list 
+-Control.ca-bundle 
+-Control.system-ca-bundle 
+-GitHub.sublime-settings 
+-
+-# Visual Studio Code # 
+-.vscode/* 
+-!.vscode/settings.json 
+-!.vscode/tasks.json 
+-!.vscode/launch.json 
+-!.vscode/extensions.json 
+-.history
+\ No newline at end of file
+Index: expedientes_fullstack/settings.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\"\"\"\r\nDjango settings for expedientes_fullstack project.\r\n\r\nGenerated by 'django-admin startproject' using Django 5.1.7.\r\n\r\nFor more information on this file, see\r\nhttps://docs.djangoproject.com/en/5.1/topics/settings/\r\n\r\nFor the full list of settings and their values, see\r\nhttps://docs.djangoproject.com/en/5.1/ref/settings/\r\n\"\"\"\r\n\r\nfrom pathlib import Path\r\n\r\n# Build paths inside the project like this: BASE_DIR / 'subdir'.\r\nBASE_DIR = Path(__file__).resolve().parent.parent\r\n\r\n\r\n# Quick-start development settings - unsuitable for production\r\n# See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/\r\n\r\n# SECURITY WARNING: keep the secret key used in production secret!\r\nSECRET_KEY = 'django-insecure-%nrmcykv9v5mroryxi71e*hncqdtx!172a@si&+^=3#c@l$)e_'\r\n\r\n# SECURITY WARNING: don't run with debug turned on in production!\r\nDEBUG = True\r\n\r\nALLOWED_HOSTS = []\r\n\r\n\r\n# Application definition\r\n\r\nINSTALLED_APPS = [\r\n    'django.contrib.admin',\r\n    'django.contrib.auth',\r\n    'django.contrib.contenttypes',\r\n    'django.contrib.sessions',\r\n    'django.contrib.messages',\r\n    'django.contrib.staticfiles',\r\n    'dashboard'\r\n]\r\n\r\nMIDDLEWARE = [\r\n    'django.middleware.security.SecurityMiddleware',\r\n    'django.contrib.sessions.middleware.SessionMiddleware',\r\n    'django.middleware.common.CommonMiddleware',\r\n    'django.middleware.csrf.CsrfViewMiddleware',\r\n    'django.contrib.auth.middleware.AuthenticationMiddleware',\r\n    'django.contrib.messages.middleware.MessageMiddleware',\r\n    'django.middleware.clickjacking.XFrameOptionsMiddleware',\r\n]\r\n\r\nROOT_URLCONF = 'expedientes_fullstack.urls'\r\n\r\nTEMPLATES = [\r\n    {\r\n        'BACKEND': 'django.template.backends.django.DjangoTemplates',\r\n        'DIRS': [],\r\n        'APP_DIRS': True,\r\n        'OPTIONS': {\r\n            'context_processors': [\r\n                'django.template.context_processors.debug',\r\n                'django.template.context_processors.request',\r\n                'django.contrib.auth.context_processors.auth',\r\n                'django.contrib.messages.context_processors.messages',\r\n            ],\r\n        },\r\n    },\r\n]\r\n\r\nWSGI_APPLICATION = 'expedientes_fullstack.wsgi.application'\r\n\r\n\r\n# Database\r\n# https://docs.djangoproject.com/en/5.1/ref/settings/#databases\r\n\r\nDATABASES = {\r\n    'default': {\r\n        'ENGINE': 'django.db.backends.sqlite3',\r\n        'NAME': BASE_DIR / 'db.sqlite3',\r\n    }\r\n}\r\n\r\n\r\n# Password validation\r\n# https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators\r\n\r\nAUTH_PASSWORD_VALIDATORS = [\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',\r\n    },\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',\r\n    },\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',\r\n    },\r\n    {\r\n        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',\r\n    },\r\n]\r\n\r\n\r\n# Internationalization\r\n# https://docs.djangoproject.com/en/5.1/topics/i18n/\r\n\r\nLANGUAGE_CODE = 'en-us'\r\n\r\nTIME_ZONE = 'UTC'\r\n\r\nUSE_I18N = True\r\n\r\nUSE_TZ = True\r\n\r\n\r\n# Static files (CSS, JavaScript, Images)\r\n# https://docs.djangoproject.com/en/5.1/howto/static-files/\r\n\r\nSTATIC_URL = 'static/'\r\n\r\n# Default primary key field type\r\n# https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field\r\n\r\nDEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/expedientes_fullstack/settings.py b/expedientes_fullstack/settings.py
+--- a/expedientes_fullstack/settings.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ b/expedientes_fullstack/settings.py	(date 1758860310862)
+@@ -37,7 +37,6 @@
+     'django.contrib.sessions',
+     'django.contrib.messages',
+     'django.contrib.staticfiles',
+-    'dashboard'
+ ]
+ 
+ MIDDLEWARE = [
+Index: expedientes_fullstack/urls.py
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>\"\"\"\r\nURL configuration for expedientes_fullstack project.\r\n\r\nThe `urlpatterns` list routes URLs to views. For more information please see:\r\n    https://docs.djangoproject.com/en/5.1/topics/http/urls/\r\nExamples:\r\nFunction views\r\n    1. Add an import:  from my_app import views\r\n    2. Add a URL to urlpatterns:  path('', views.home, name='home')\r\nClass-based views\r\n    1. Add an import:  from other_app.views import Home\r\n    2. Add a URL to urlpatterns:  path('', Home.as_view(), name='home')\r\nIncluding another URLconf\r\n    1. Import the include() function: from django.urls import include, path\r\n    2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))\r\n\"\"\"\r\nfrom django.contrib import admin\r\nfrom django.urls import path, include\r\n\r\nurlpatterns = [\r\n    path('admin/', admin.site.urls),\r\n    path('', include('dashboard.urls'))\r\n]\r\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/expedientes_fullstack/urls.py b/expedientes_fullstack/urls.py
+--- a/expedientes_fullstack/urls.py	(revision 9bd54d42f9cddbb0c82fb9e84006040f7b0fbfb3)
++++ b/expedientes_fullstack/urls.py	(date 1758860310867)
+@@ -15,9 +15,8 @@
+     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
+ """
+ from django.contrib import admin
+-from django.urls import path, include
++from django.urls import path
+ 
+ urlpatterns = [
+     path('admin/', admin.site.urls),
+-    path('', include('dashboard.urls'))
+ ]
+diff --git a/dashboard/migrations/__init__.py b/dashboard/migrations/__init__.py
+deleted file mode 100644
+diff --git a/dashboard/__init__.py b/dashboard/__init__.py
+deleted file mode 100644
