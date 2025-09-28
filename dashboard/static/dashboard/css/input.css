@@ -1,23 +1,5 @@
 @import "tailwindcss";
 
-@font-face {
-    font-family: "Inter";
-    font-style: normal;
-    font-weight: 400 700;
-    font-display: swap;
-    src: url("Inter-VariableFont_opsz,wght.ttf") format("truetype");
-}
-
 @theme {
-    --font-sans: "Inter", sans-serif;
     --color-gray: #EAEAEA;
-    --color-dark-blue: #4062BB;
-    --color-blue: #59C3C3;
-    --color-pink: #F45B69;
-    --color-purple: #52489C;
-    --color-dark-soft-blue: #7690D0;
-    --color-soft-blue: #87D4D4;
-    --color-soft-pink: #F99FA7;
-    --color-soft-purple: #7C73BF;
-
 }
