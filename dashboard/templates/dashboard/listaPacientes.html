@@ -1,0 +1,63 @@
+{% extends "dashboard/plantillaMenuCompacto.html" %}
+
+{% block title %}Pacientes{% endblock %}
+
+{% block content %}
+    <div class="flex my-15 mx-20 ">
+        <a class="bg-blue mr-30 p-2.5 rounded-3xl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="size-6">
+  <path fill-rule="evenodd" d="M9.53 2.47a.75.75 0 0 1 0 1.06L4.81 8.25H15a6.75 6.75 0 0 1 0 13.5h-3a.75.75 0 0 1 0-1.5h3a5.25 5.25 0 1 0 0-10.5H4.81l4.72 4.72a.75.75 0 1 1-1.06 1.06l-6-6a.75.75 0 0 1 0-1.06l6-6a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
+</svg>
+</a>
+        <input type="text" placeholder="Buscar" class="pl-4 py-2 px-2 bg-gray rounded-3xl w-140">
+    </div>
+
+    <section class="mx-20">
+            <!-- Table responsive wrapper -->
+    <div class="overflow-x-auto rounded-t-2xl bg-">
+
+      <!-- Table -->
+      <table class="min-w-full text-left text-sm whitespace-nowrap ">
+
+        <!-- Table head -->
+        <thead class="uppercase tracking-wider text-white bg-soft-purple">
+          <tr>
+            <th scope="col" class="px-6 py-5 border-x border-black">
+              Nombre
+            </th>
+            <th scope="col" class="px-6 py-5 border-x border-black">
+              Diagnóstico
+            </th>
+            <th scope="col" class="px-6 py-5 border-x border-black">
+              Sexo
+            </th>
+            <th scope="col" class="px-6 py-5 border-x border-black">
+              Edad
+            </th>
+              <th scope="col" class="px-6 py-5 border-x border-black">
+              Acción
+            </th>
+          </tr>
+        </thead>
+
+        <!-- Table body -->
+        <tbody>
+
+          <tr class="hover:bg-neutral-100 ">
+            <th scope="row" class="px-6 py-5 border-x">
+              Handbag
+            </th>
+            <td class="px-6 py-5 border-x">$129.99</td>
+            <td class="px-6 py-5 border-x">30</td>
+            <td class="px-6 py-5 border-x">In Stock</td>
+              <td class="px-6 py-5 border-x text-center"><a class="px-3 py-2 text-sm font-medium text-white bg-purple rounded-3xl hover:bg-dark-soft-blue transform hover:scale-105
+               transition-all duration-300 ease-in-out cursor-pointer">Ver Información</a></td>
+          </tr>
+
+        </tbody>
+
+      </table>
+
+    </div>
+    </section>
+
+{% endblock %}
